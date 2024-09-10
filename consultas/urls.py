@@ -2,6 +2,6 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 urlpatterns = [
-    path('',views.prueba,name='prueba'),
+    path('',views.evaluar_consultas,name='evaluar_consultas'),
     
 ]
