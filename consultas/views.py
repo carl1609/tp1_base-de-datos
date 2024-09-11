@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.db import connection
 # Create your views here.
+
+def index(request):
+    return render(request,'index.html')
+
 def evaluar_consultas(request):
     consultas={
         #aqui van las consultas
@@ -17,7 +21,7 @@ def evaluar_consultas(request):
     
     resultado=obtener_consulta(consulta)
 
-    return render(request,'index.html',resultado)
+    return render(request,'resultado.html',{'resultados':resultado})
 
 
 

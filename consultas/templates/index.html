@@ -7,33 +7,17 @@
 </head>
 <body>
     <h1> Consultar la base de datos</h1>
-    <form action="" method="post">
-
+    <form action="http://localhost:8000/evaluar_consultas/" method="post">
         {% csrf_token %}
-
         <select name="consulta" id="consulta">
             <!-- agregar las consultas -->
             <option value="consulta1">
-
+                consulta1
             </option>
         </select>
+        <input type="submit" value="hacer consulta">
     </form>
 
-    <section class="resultado">
-        <table>
-            <thead></thead>
-            <tbody>
-                {% for tupla in resultado %}
-                    <tr>
-                        {% for dato in tupla  %}
-                            <td>{{dato}}</td>
-                        {% endfor %}            
-
-                    </tr>
-                {% endfor %}    
-            </tbody>
-        </table>
-
-    </section>
+    
 </body>
 </html>
