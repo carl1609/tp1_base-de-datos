@@ -4,14 +4,13 @@ from django.db import connection
 # Create your views here.
 
 def index(request):
-    return render(request,'index.html')
+    return render(request,'base.html')
 
-def evaluar_consultas(request):
+def evaluar_consultas(request,consulta):
     consultas={
         #aqui van las consultas
         "consulta1":"select * from conejos",
     }
-    consulta=request.POST.get('consulta')
     #funcion para obtener la consulta me devuelve una lista de duplas con los resultados
     def obtener_consulta(consulta):
         with connection.cursor() as cursor:
@@ -25,3 +24,4 @@ def evaluar_consultas(request):
 
 
 
+ 
