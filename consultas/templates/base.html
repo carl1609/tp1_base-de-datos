@@ -14,34 +14,86 @@
         <header>
             <div class="titulo">
                 <img src="logoPostgres.png" alt="logoPostgres">
-                PostgreSQL
             </div>
             <div class="elementos-header">
                 <div class="elemento">
-                    Obtener objetos del servidor
-                    <div class="menu">
-                        <!--<ul>Obtener las bases de datos disponibles</ul>
-                        <ul>Obtener los Roles que se puede conectar al servidor</ul>
-                        <ul>Obtener los Grupos que existen en el servidor</ul>
-                        <ul>Obtener los lenguajes del servidor</ul>-->
+                    <!--PARTE II del lab3 (La PARTE I era lo del diccionario de datos asi q no entra)-->
+                    <div class="abrir-menu" data-target="m1">
+                        Obtener objetos del servidor
+                    </div>
+                    <div class="menu m1">
+                        <ul class="lista-opciones">
+                            <li><a href="">Obtener las bases de datos disponibles</a></li>
+                            <li><a href="">Obtener los Roles que se puede conectar al servidor</a></li>
+                            <li><a href="">Obtener los Grupos que existen en el servidor</a></li>
+                            <li><a href="">Obtener los lenguajes del servidor</a></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="elemento">
-                    Obtener objetos de la BBDD
-                    <div class="menu"></div>
+                    <!--PARTE III del lab3-->
+                    <div class="abrir-menu" data-target="m2">
+                        Obtener objetos de la BBDD
+                    </div>
+                    <div class="menu m2">
+                        <ul class="lista-opciones">
+                            <li><a href="">Obtener los esquemas</a></li>
+                            <li><a href="">Obtener las tablas de un esquema</a></li>
+                            <li><a href="">Obtener las vistas</a></li>
+                            <li><a href="">Obtener las funciones</a></li>
+                            <li><a href="">Obtener los trigger</a></li>
+                            <li><a href="">Obtener las secuencias</a></li>
+                            <li><a href="">Obtener las reglas</a></li>
+                            <li><a href="">Obtener los tipos de datos</a></li>
+                            <li><a href="">Obtener índices</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="elemento">
-                    Obtener detalles de los objetos.
-                    <div class="menu"></div>
+                    <!--PARTE IV del lab3-->
+                    <div class="abrir-menu" data-target="m3">
+                        Obtener detalles de los objetos
+                    </div>
+                    <div class="menu m3">
+                        <ul class="lista-opciones">
+                            <li><a href="">Detalles de los esquemas. <br>Obtener para un esquema los privilegios de acceso</a></li>
+                            <li><a href="">Obtener detalles de las tablas. <br>Orden de los campos, nombre y tipo de dato</a></li>
+                            <li><a href="">Obtener detalles de las tablas. Clave primaria</a></li>
+                            <li><a href="">Obtener detalles de las tablas. Clave foráneas</a></li>
+                            <li><a href="">Obtener detalles de las secuencias</a></li>
+                            <li><a href="">Obtener la definición de un índice</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="elemento">
-                    Obtener detalles de privilegios de los objetos.
-                    <div class="menu"></div>
+                    <!--PARTE V del lab3-->
+                    <div class="abrir-menu" data-target="m4">
+                        Obtener detalles de privilegios de los objetos
+                    </div>
+                    <div class="menu m4">
+                        <ul class="lista-opciones">
+                            <li><a href="">Obtener los privilegios de una tabla</a></li>
+                            <li><a href="">Obtener los privilegios de las funciones</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="elemento">
-                    Monitoreo.
-                    <div class="menu"></div>
+                    <!--PARTE VI del lab3-->
+                    <div class="abrir-menu" data-target="m5">
+                        Monitoreo
+                    </div>
+                    <div class="menu m5">
+                        <ul class="lista-opciones">
+                            <li><a href="">Usuarios conectados, IP y consulta</a></li>
+                            <li><a href="">Tamaño de las bases de datos del servidor</a></li>
+                            <li><a href="">Tamaño de una tabla</a></li>
+                            <li><a href="">Tamaño de todas las tablas de un esquema</a></li>
+                            <li><a href="">Listado por BBDD del tamaño total de la BBDD, <br> el nombre del esquema, el nombre
+                                de la tabla, <br> el tamaño total de la tabla, el tamaño de la tabla <br> y el tamaño del índice</a></li>
+                        </ul>
+                    </div>
                 </div>
+                <script src="scriptMostrarMenu.js"></script>
             </div>
         </header>
         
@@ -50,7 +102,7 @@
                 Seleccione una de las opciones del menu para comenzar.
             </div>
         </div>
-        <div class="final">
+        <div class="final"> <!--ESTO PODRIA USARSE PARA CREDITOS: EJ: INTEGRANTES: (Y NUESTROS NOMBRES)-->
 
         </div>
     </div>
