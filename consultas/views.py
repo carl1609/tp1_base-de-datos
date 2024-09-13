@@ -41,7 +41,7 @@ def evaluar_consultas(request, consulta):
 
         # Consultas para monitoreo
         "monitorear-conexiones": "SELECT pid, usename, client_addr, query FROM pg_stat_activity;",
-        "tamanio-bbdd": "SELECT datname AS database_name, pg_size_pretty(pg_database_size(datname)) AS size FROM pg_database;",
+        "tamanio-bbdd": "SELECT datname AS database_name, pg_size_pretty(pg_database_size(datname)) AS size FROM pg_database;", #USARA GRAFICOS
         "tamanio-tablas": "SELECT pg_size_pretty(pg_total_relation_size('apellidos_pais')) AS total_size",
         "tamanio-tablas-esquema": "SELECT table_name, pg_size_pretty(pg_total_relation_size(quote_ident(table_schema) || '.' || quote_ident(table_name))) AS size FROM information_schema.tables WHERE table_schema = 'public';",
         "listado-tamanios": "SELECT current_database() AS database_name, schemaname AS schema_name, tablename AS table_name, pg_size_pretty(pg_total_relation_size(schemaname || '.' || tablename)) AS total_size, pg_size_pretty(pg_relation_size(schemaname || '.' || tablename)) AS table_size, pg_size_pretty(pg_indexes_size(schemaname || '.' || tablename)) AS index_size FROM pg_tables;"
@@ -59,6 +59,11 @@ def evaluar_consultas(request, consulta):
     resultado, nombre_columnas = obtener_consulta(consulta) 
     lista_resultado = [list(tupla) for tupla in resultado]
     consultaHecha = consultas[consulta] #Esto para mostrar la consulta hecha en el template
+
+    #DESVIO PARA USAR GRAFICOS O NO
+    if consulta == "tamanio-bbdd":
+        return render(request,'graficos.html',{'consulta':consultaHecha,'resultados':lista_resultado,'columnas':nombre_columnas})
+
     return render(request,'resultado.html',{'consulta':consultaHecha,'resultados':lista_resultado,'columnas':nombre_columnas})
 
     #USAR CUANDO ESTEN LOS GRAFICOS

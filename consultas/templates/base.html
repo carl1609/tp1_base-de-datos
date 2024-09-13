@@ -97,6 +97,7 @@
                 </div>
                 <script src="{% static 'scriptMostrarMenu.js' %}"></script>
                 <script src="{% static 'scriptSaltoLineaConsulta.js' %}"></script>
+                <script src="{% static 'scriptGraficos.js' %}"></script>
             </div>
         </header>
         
@@ -104,6 +105,8 @@
             <div class="contenido"> <!--NOTA: ESTO ES LO QUE VA A SER REEMPLAZADO POR CADA RESULTADO SEGUN EL ENLACE SELECCIONADO-->
                 {%block content%} Seleccione una de las opciones del menu para comenzar. {%endblock%}
             </div>
+            {% block extra_scripts %}
+            {% endblock %}
         </div>
         <div class="final"> <!--ESTO PODRIA USARSE PARA CREDITOS: EJ: INTEGRANTES: (Y NUESTROS NOMBRES)-->
             Hecho Por: Carlos Obando, Franco Luque, Sabrina Saunders, Keyla Tacuabe, Rodrigo Pereyra.
