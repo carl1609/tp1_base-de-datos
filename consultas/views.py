@@ -63,4 +63,5 @@ def evaluar_consultas(request,consulta,grafico):
 
 
 
+
  
