@@ -1,15 +1,17 @@
-*{
+* {
     font-family: 'Roboto';
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-body{
+body {
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-header{
+header {
     height: 100px;
     display: flex;
     justify-content: space-between;
@@ -19,14 +21,16 @@ header{
     padding: 0 10%;
 }
 
-.container{
+.container {
     margin: 20px;
     background-color: #8bcfff;
-    height: 90vh;
+    height: calc(100vh - 120px); /* Ajuste la altura total para dar espacio al header y al footer */
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
 }
 
-.titulo{
+.titulo {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,27 +39,27 @@ header{
     padding-right: 20px;
 }
 
-.titulo img{
+.titulo img {
     height: 80px;
     width: 80px;
     margin-right: 10px;
 }
 
-.elementos-header{
+.elementos-header {
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.elemento{
+.elemento {
     height: 100%;
     display: block;
     margin-right: 20px;
     font-size: 20px;
 }
 
-.abrir-menu{
+.abrir-menu {
     height: 100%;
     display: flex;
     align-items: center;
@@ -63,13 +67,13 @@ header{
     padding: 0 5px;
 }
 
-.abrir-menu:hover{
+.abrir-menu:hover {
     background-color: #67b7ef;
     border-radius: 10px;
     color: white;
 }
 
-.menu{
+.menu {
     margin-top: 5px;
     position: relative;
     background-color: #d2efff;
@@ -77,39 +81,83 @@ header{
     border-radius: 5px;
     display: none;
     max-height: 500px;
-    overflow: scroll;
+    overflow: auto;
+    z-index: 10; /* Asegura que el menú esté por encima del contenido */
 }
 
-.lista-opciones{
+.lista-opciones {
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: flex-start;
 }
 
-.lista-opciones li{
+.lista-opciones li {
     margin-bottom: 10px;
     list-style: none;
 }
 
-.lista-opciones li a{
+.lista-opciones li a {
     text-decoration: none;
     color: black;
 }
 
-.lista-opciones li a:hover{
+.lista-opciones li a:hover {
     background-color: #8bcfff;
 }
 
-.centro{
-    height: 100%;
+.centro {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    overflow: auto; /* Permite desplazamiento si el contenido es grande */
 }
 
-.contenido{
-    font-size: 3vh;
+.contenido {
+    font-size: 1.5em;
     font-weight: bold;
+    width: 100%;
+    overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #f2f2f2;
+}
+
+th, td {
+    padding: 12px; /* Aumenta el padding para mayor claridad */
+    text-align: left;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+th {
+    background-color: #f4f4f4;
+    word-wrap: break-word; /* Permite el ajuste de palabras largas en los encabezados */
+}
+
+tbody {
+    display: block;
+    max-height: 400px; /* Ajusta la altura máxima del cuerpo de la tabla */
+    overflow-y: auto; /* Permite desplazamiento vertical si el contenido es grande */
+}
+
+tr {
+    display: flex;
+    width: 100%;
+}
+
+td {
+    flex: 1;
+    width: auto; /* Permite que las celdas se ajusten según el contenido */
 }
 .contenido_2{
     width: 100%;
@@ -119,7 +167,4 @@ header{
 .resultado{
     border: 1px solid black;
     background-color: azure;
-}
-.resultado table {
-    
 }
