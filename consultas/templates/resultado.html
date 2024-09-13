@@ -1,5 +1,10 @@
 {%extends "base.html"%}
-{%block content%}   
+{%block content%}
+    <span class="subtitulo">Consulta SQL realizada:</span>
+    <div class="marcoConsultaSql">
+        <span id="consulta">{{ consulta }}</span>
+    </div>
+    <span class="subtitulo">Resultado:</span>
     <section class="resultado">
         <table>
             <thead>
