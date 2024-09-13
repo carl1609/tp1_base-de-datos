@@ -6,7 +6,7 @@ from django.db import connection
 def index(request):
     return render(request,'base.html')
 
-def evaluar_consultas(request, consulta, grafico):
+def evaluar_consultas(request, consulta):
 
     consultas = {
                 # Consultas para obtener objetos del servidor
@@ -57,7 +57,14 @@ def evaluar_consultas(request, consulta, grafico):
     
     resultado,nombre_columnas = obtener_consulta(consulta) 
     lista_resultado = [list(tupla) for tupla in resultado]
-    return render(request,'resultado.html',{'resultados':lista_resultado,'columnas':nombre_columnas,'grafico': grafico})
+    return render(request,'resultado.html',{'resultados':lista_resultado,'columnas':nombre_columnas})
+
+    #USAR CUANDO ESTEN LOS GRAFICOS
+    #resultado,nombre_columnas=obtener_consulta(consulta) 
+    #lista_resultado=[list(tupla) for tupla in resultado]
+    #hay_grafico='no' if grafico==0 else 'si' 
+    #print(lista_resultado)
+    #return render(request,'resultado.html',{'resultados':lista_resultado,'columnas':nombre_columnas,'grafico':grafico})
 
 
 
