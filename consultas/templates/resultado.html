@@ -102,7 +102,13 @@
             <div class="contenido"> <!--NOTA: ESTO ES LO QUE VA A SER REEMPLAZADO POR CADA RESULTADO SEGUN EL ENLACE SELECCIONADO-->
                 <section class="resultado">
                     <table>
-                        <thead></thead>
+                        <thead>
+                            <tr>
+                                {% for columna in columnas %}
+                                    <th>{{ columna }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
                         <tbody>
                             {% for tupla in resultados %}
                                 <tr>

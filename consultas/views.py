@@ -16,11 +16,13 @@ def evaluar_consultas(request,consulta):
         with connection.cursor() as cursor:
             cursor.execute(consultas[consulta])
             resultado=cursor.fetchall()
-        return resultado
-    
-    resultado=obtener_consulta(consulta)
+            nombre_columnas=[desc[0] for desc in cursor.description]
 
-    return render(request,'resultado.html',{'resultados':resultado})
+        return resultado,nombre_columnas
+    
+    resultado,nombre_columnas=obtener_consulta(consulta)
+
+    return render(request,'resultado.html',{'resultados':resultado,'columnas':nombre_columnas})
 
 
 
