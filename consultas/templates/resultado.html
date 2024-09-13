@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <title>Aplicacion</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
@@ -98,8 +99,8 @@
             </div>
         </header>
         
-        <div class="centro">
-            <div class="contenido"> <!--NOTA: ESTO ES LO QUE VA A SER REEMPLAZADO POR CADA RESULTADO SEGUN EL ENLACE SELECCIONADO-->
+        
+            <div class="contenido_2"> <!--NOTA: ESTO ES LO QUE VA A SER REEMPLAZADO POR CADA RESULTADO SEGUN EL ENLACE SELECCIONADO-->
                 <section class="resultado">
                     <table>
                         <thead>
@@ -122,12 +123,76 @@
                     </table>
             
                 </section>
+                <div>
+                    <canvas id="grafico"></canvas>
+                </div>
             </div>
-        </div>
+        
         <div class="final"> <!--ESTO PODRIA USARSE PARA CREDITOS: EJ: INTEGRANTES: (Y NUESTROS NOMBRES)-->
 
         </div>
     </div>
+    <script>
+         const grafico={{grafico|safe}};
+        
+        if(grafico==1){
+        //const resultados={{resultados}};
+        //const datos={{resultados|safe}};
+            const datos={{resultados|safe}}
+            
+            let tupla=[]
+            let listas=[]
+            for (let i = 0; i < datos.length; i++) {
+                for (let x = 0; x < datos[i].length; x++) {
+                    tupla[x]= datos[i][x];
+                    
+                }
+                listas.push(tupla) 
+            }
+            const labels={{columnas|safe}};
+            const valor_prueba=[[123,121,212],[232,434,544]]
+            
+            const grafico=document.querySelector('#grafico');
+            const chart = new Chart(grafico, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: listas.map((lista) =>{
+                        datasets= {
+                            label: 'ffff',
+                            data: lista,
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            fill: true,
+                            borderWidth: 1
+                        }
+                        return datasets
+                    })
+                    
+                    
+                    
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Fecha'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Valor'
+                            },
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>
 

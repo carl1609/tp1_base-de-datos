@@ -159,3 +159,15 @@ td {
     flex: 1;
     width: auto; /* Permite que las celdas se ajusten según el contenido */
 }
+.contenido_2{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.resultado{
+    border: 1px solid black;
+    background-color: azure;
+}
+.resultado table {
+    
+}
