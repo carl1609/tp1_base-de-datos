@@ -1,0 +1,13 @@
+{%extends "base.html"%}
+
+{%block content%}
+<form action="{%url 'resultado-especifico' %}" method="POST">
+    {% csrf_token %}
+    <label for="esquema">Nombre del esquema</label>
+    <input type="text" name="esquema" id="esquema">
+    <label for="tabla">Nombre de la tabla</label>
+    <input type="text" name="tabla" id="tabla">
+    <input type="hidden" name="consulta" value="{{consulta}}">
+    <input type="submit" value="Consultar">
+</form>
+{%endblock%}
