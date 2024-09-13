@@ -9,6 +9,7 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    background-color: #8bcfff;
 }
 
 header {
@@ -22,9 +23,9 @@ header {
 }
 
 .container {
-    margin: 20px;
     background-color: #8bcfff;
-    height: calc(100vh - 120px); /* Ajuste la altura total para dar espacio al header y al footer */
+    min-height: 600px;
+    /*height: calc(100vh - 120px); /* Ajuste la altura total para dar espacio al header y al footer */
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -65,6 +66,8 @@ header {
     align-items: center;
     justify-content: center;
     padding: 0 5px;
+    overflow: hidden;
+    font-size: 100%;
 }
 
 .abrir-menu:hover {
@@ -82,7 +85,9 @@ header {
     display: none;
     max-height: 500px;
     overflow: auto;
-    z-index: 10; /* Asegura que el menú esté por encima del contenido */
+    border: 1px solid black;
+    z-index: 10;
+    /* Asegura que el menú esté por encima del contenido */
 }
 
 .lista-opciones {
@@ -106,48 +111,66 @@ header {
 }
 
 .centro {
-    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     padding: 20px;
-    overflow: auto; /* Permite desplazamiento si el contenido es grande */
+    /*overflow: auto;*/
+    /* Permite desplazamiento si el contenido es grande */
 }
 
 .contenido {
     font-size: 1.5em;
     font-weight: bold;
-    width: 100%;
-    overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
+    width: 80%;
+    /* overflow-x: auto;*/
+    /* Permite desplazamiento horizontal si es necesario */
+}
+
+.resultado {
+    background-color: azure;
+    max-width: 80vw;
+    border-radius: 5px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-}
-
-thead {
-    background-color: #f2f2f2;
+    overflow: scroll;
 }
 
 th, td {
-    padding: 12px; /* Aumenta el padding para mayor claridad */
+    padding: 12px;
+    /* Aumenta el padding para mayor claridad */
     text-align: left;
     border: 1px solid #ddd;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
+    /* Cambio la fuente para las tablas y el tamaño que se auto ajuste (franco)*/
+    font-family: monospace;
+    font-size: 1em;
+    font-weight: 100;
+    word-break: break-word;
+}
+
+thead tr td{
+    font-weight: bold;
 }
 
 th {
     background-color: #f4f4f4;
-    word-wrap: break-word; /* Permite el ajuste de palabras largas en los encabezados */
+    word-wrap: break-word;
+    /* Permite el ajuste de palabras largas en los encabezados */
 }
 
 tbody {
     display: block;
-    max-height: 400px; /* Ajusta la altura máxima del cuerpo de la tabla */
-    overflow-y: auto; /* Permite desplazamiento vertical si el contenido es grande */
+    max-height: 400px;
+    /* Ajusta la altura máxima del cuerpo de la tabla */
+    overflow-y: auto;
+    /* Permite desplazamiento vertical si el contenido es grande */
 }
 
 tr {
@@ -157,14 +180,54 @@ tr {
 
 td {
     flex: 1;
-    width: auto; /* Permite que las celdas se ajusten según el contenido */
+    width: auto;
+    /* Permite que las celdas se ajusten según el contenido */
 }
-.contenido_2{
+#nombreColumnas{
+    background-color: #d2efff;
+    color: black;
+    font-weight: bold;
+}
+
+/*.contenido_2 {
     width: 100%;
     display: flex;
     flex-direction: column;
+}*/
+
+.marcoConsultaSql {
+    padding: 5px;
+    margin: 10px 0;
+    background-color: #d2efff;
+    border-radius: 10px;
 }
-.resultado{
-    border: 1px solid black;
-    background-color: azure;
+
+#consulta {
+    max-width: 800px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-align: left;
+    font-family: monospace;
+    font-weight: 100;
+    font-size: 20px;
+    
 }
+
+.subtitulo {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.final {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 10px;
+    font-weight: bold;
+    font-style: italic;
+}
+

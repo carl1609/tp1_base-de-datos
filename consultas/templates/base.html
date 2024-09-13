@@ -14,9 +14,9 @@
 <body>
     <div class="container">
         <header>
-            <div class="titulo">
-                <img src="logoPostgres.png" alt="logoPostgres">
-            </div>
+            <a class="titulo" href="/">
+                <img src="{% static 'logoPostgres.png' %}" alt="logoPostgres">
+            </a>
             <div class="elementos-header">
                 <div class="elemento">
                     <!--PARTE II del lab3 (La PARTE I era lo del diccionario de datos asi q no entra)-->
@@ -96,6 +96,8 @@
                     </div>
                 </div>
                 <script src="{% static 'scriptMostrarMenu.js' %}"></script>
+                <script src="{% static 'scriptSaltoLineaConsulta.js' %}"></script>
+                <script src="{% static 'scriptGraficos.js' %}"></script>
             </div>
         </header>
         
@@ -103,9 +105,13 @@
             <div class="contenido"> <!--NOTA: ESTO ES LO QUE VA A SER REEMPLAZADO POR CADA RESULTADO SEGUN EL ENLACE SELECCIONADO-->
                 {%block content%} Seleccione una de las opciones del menu para comenzar. {%endblock%}
             </div>
+            {% block extra_scripts %}
+            {% endblock %}
         </div>
         <div class="final"> <!--ESTO PODRIA USARSE PARA CREDITOS: EJ: INTEGRANTES: (Y NUESTROS NOMBRES)-->
-
+            Hecho Por: Carlos Obando, Franco Luque, Sabrina Saunders, Keyla Tacuabe, Rodrigo Pereyra.
+            <br>
+            Asignatura: Base de datos 2
         </div>
     </div>
     {%block script%}

@@ -1,4 +1,8 @@
 {%extends "base.html"%}
+{% load static %}
+{% block extra_scripts %}
+    <script src="{% static 'scriptGraficos.js' %}"></script>
+{% endblock %}
 {%block content%}
     <span class="subtitulo">Consulta SQL realizada:</span>
     <div class="marcoConsultaSql">
@@ -6,25 +10,7 @@
     </div>
     <span class="subtitulo">Resultado:</span>
     <section class="resultado">
-        <table>
-            <thead>
-                <tr id="nombreColumnas">
-                    {% for columna in columnas %}
-                        <td>{{ columna }}</td>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for tupla in resultados %}
-                    <tr>
-                        {% for dato in tupla  %}
-                            <td>{{dato}}</td>
-                        {% endfor %}            
-
-                    </tr>
-                {% endfor %}    
-            </tbody>
-        </table>
+        <canvas id="barChart" width="400" height="300"></canvas>
         <script>
         /*otra manera de hacerlo f si se ve el grafico pero no me termina de convencer mañana lo trato de hacer 
         directamente con la tabla que no se me habia ocurrido 
@@ -101,3 +87,4 @@
        </script>
     </section>
 {%endblock%}
+
