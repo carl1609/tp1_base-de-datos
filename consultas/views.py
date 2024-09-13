@@ -6,13 +6,14 @@ from django.db import connection
 def index(request):
     return render(request,'base.html')
 
-def evaluar_consultas(request,consulta,grafico):
-    consultas={
-        # Consultas para obtener objetos del servidor
-        "consulta1": "SELECT datname FROM pg_database WHERE datallowconn=true;",
-        "consulta2": "SELECT rolname FROM pg_roles WHERE rolcanlogin = true;",
-        "consulta3": "SELECT groname FROM pg_group;",
-        "consulta4": "SELECT lanname FROM pg_language;",
+def evaluar_consultas(request, consulta):
+
+    consultas = {
+                # Consultas para obtener objetos del servidor
+        "bases-disponibles": "SELECT datname FROM pg_database WHERE datallowconn=true;",
+        "roles": "SELECT rolname FROM pg_roles WHERE rolcanlogin = true;",
+        "grupos-existentes": "SELECT groname FROM pg_group;",
+        "lenguajes": "SELECT lanname FROM pg_language;",
 
         # Consultas para obtener objetos de la base de datos
         "consulta5": "SELECT nspname FROM pg_namespace;",
@@ -49,18 +50,20 @@ def evaluar_consultas(request,consulta,grafico):
     def obtener_consulta(consulta):
         with connection.cursor() as cursor:
             cursor.execute(consultas[consulta])
-            resultado=cursor.fetchall()
-            nombre_columnas=[desc[0] for desc in cursor.description]
-        return resultado,nombre_columnas
-    resultado,nombre_columnas=obtener_consulta(consulta) 
+            resultado = cursor.fetchall()
+            nombre_columnas = [desc[0] for desc in cursor.description]
+        return resultado, nombre_columnas
+    
+    resultado,nombre_columnas = obtener_consulta(consulta) 
+    lista_resultado = [list(tupla) for tupla in resultado]
+    return render(request,'resultado.html',{'resultados':lista_resultado,'columnas':nombre_columnas})
+
     #USAR CUANDO ESTEN LOS GRAFICOS
-    resultado,nombre_columnas=obtener_consulta(consulta) 
-    lista_resultado=[list(tupla) for tupla in resultado]
-  
-   
-    return render(request,'resultado.html',{'resultados':lista_resultado,'columnas':nombre_columnas,'grafico':grafico})
-
-
+    #resultado,nombre_columnas=obtener_consulta(consulta) 
+    #lista_resultado=[list(tupla) for tupla in resultado]
+    #hay_grafico='no' if grafico==0 else 'si' 
+    #print(lista_resultado)
+    #return render(request,'resultado.html',{'resultados':lista_resultado,'columnas':nombre_columnas,'grafico':grafico})
 
 
 
