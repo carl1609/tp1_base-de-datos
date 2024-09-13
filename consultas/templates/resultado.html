@@ -99,8 +99,8 @@
             </div>
         </header>
         
-        <div class="centro">
-            <div class="contenido"> <!--NOTA: ESTO ES LO QUE VA A SER REEMPLAZADO POR CADA RESULTADO SEGUN EL ENLACE SELECCIONADO-->
+        
+            <div class="contenido_2"> <!--NOTA: ESTO ES LO QUE VA A SER REEMPLAZADO POR CADA RESULTADO SEGUN EL ENLACE SELECCIONADO-->
                 <section class="resultado">
                     <table>
                         <thead>
@@ -127,71 +127,71 @@
                     <canvas id="grafico"></canvas>
                 </div>
             </div>
-        </div>
+        
         <div class="final"> <!--ESTO PODRIA USARSE PARA CREDITOS: EJ: INTEGRANTES: (Y NUESTROS NOMBRES)-->
 
         </div>
     </div>
     <script>
-        const grafico=document.querySelector('#grafico');
-        const chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: _fechas,
-                datasets: [
-                    {
-                        label: 'Temperatura (°C)',
-                        data: _temperaturas,
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        fill: true,
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Humedad (%)',
-                        data: _humedades,
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        fill: true,
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Presión (hPa)',
-                        data: _presiones,
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        fill: true,
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Velocidad del Viento (km/h)',
-                        data: _velocidades_viento,
-                        borderColor: 'rgba(153, 102, 255, 1)',
-                        backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                        fill: true,
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Fecha'
+         const grafico={{grafico|safe}};
+        
+        if(grafico==1){
+        //const resultados={{resultados}};
+        //const datos={{resultados|safe}};
+            const datos={{resultados|safe}}
+            
+            let tupla=[]
+            let listas=[]
+            for (let i = 0; i < datos.length; i++) {
+                for (let x = 0; x < datos[i].length; x++) {
+                    tupla[x]= datos[i][x];
+                    
+                }
+                listas.push(tupla) 
+            }
+            const labels={{columnas|safe}};
+            const valor_prueba=[[123,121,212],[232,434,544]]
+            
+            const grafico=document.querySelector('#grafico');
+            const chart = new Chart(grafico, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: listas.map((lista) =>{
+                        datasets= {
+                            label: 'ffff',
+                            data: lista,
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            fill: true,
+                            borderWidth: 1
                         }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Valor'
+                        return datasets
+                    })
+                    
+                    
+                    
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Fecha'
+                            }
                         },
-                        beginAtZero: false
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Valor'
+                            },
+                            beginAtZero: false
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
     </script>
 </body>
 </html>
