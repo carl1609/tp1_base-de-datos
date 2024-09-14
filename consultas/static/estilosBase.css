@@ -25,7 +25,6 @@ header {
 .container {
     background-color: #8bcfff;
     min-height: 600px;
-    /*height: calc(100vh - 120px); /* Ajuste la altura total para dar espacio al header y al footer */
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -87,7 +86,6 @@ header {
     overflow: auto;
     border: 1px solid black;
     z-index: 10;
-    /* Asegura que el menú esté por encima del contenido */
 }
 
 .lista-opciones {
@@ -116,16 +114,12 @@ header {
     align-items: center;
     text-align: center;
     padding: 20px;
-    /*overflow: auto;*/
-    /* Permite desplazamiento si el contenido es grande */
 }
 
 .contenido {
     font-size: 1.5em;
     font-weight: bold;
     width: 80%;
-    /* overflow-x: auto;*/
-    /* Permite desplazamiento horizontal si es necesario */
 }
 
 .resultado {
@@ -142,13 +136,9 @@ table {
 
 th, td {
     padding: 12px;
-    /* Aumenta el padding para mayor claridad */
     text-align: left;
     border: 1px solid #ddd;
     overflow: hidden;
-    /*text-overflow: ellipsis;*/
-    /*white-space: nowrap;*/
-    /* Cambio la fuente para las tablas y el tamaño que se auto ajuste (franco)*/
     font-family: monospace;
     font-size: 1em;
     font-weight: 100;
@@ -162,15 +152,12 @@ thead tr td{
 th {
     background-color: #f4f4f4;
     word-wrap: break-word;
-    /* Permite el ajuste de palabras largas en los encabezados */
 }
 
 tbody {
     display: block;
     max-height: 400px;
-    /* Ajusta la altura máxima del cuerpo de la tabla */
     overflow-y: auto;
-    /* Permite desplazamiento vertical si el contenido es grande */
 }
 
 tr {
@@ -181,20 +168,12 @@ tr {
 td {
     flex: 1;
     width: auto;
-    /* Permite que las celdas se ajusten según el contenido */
 }
 #nombreColumnas{
     background-color: #d2efff;
     color: black;
     font-weight: bold;
 }
-
-/*.contenido_2 {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}*/
-
 .marcoConsultaSql {
     padding: 5px;
     margin: 10px 0;
@@ -229,5 +208,13 @@ td {
     padding-bottom: 10px;
     font-weight: bold;
     font-style: italic;
+}
+
+#grafico{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    width: 400px;
 }
 

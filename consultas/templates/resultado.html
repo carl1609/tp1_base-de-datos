@@ -20,84 +20,9 @@
                         {% for dato in tupla  %}
                             <td>{{dato}}</td>
                         {% endfor %}            
-
                     </tr>
                 {% endfor %}    
             </tbody>
         </table>
-        <script>
-        /*otra manera de hacerlo f si se ve el grafico pero no me termina de convencer mañana lo trato de hacer 
-        directamente con la tabla que no se me habia ocurrido 
-            const hay_grafico={{grafico|safe}};
-            const grafico=document.querySelector('#grafico');
-           console.log(grafico)
-           if(hay_grafico==1){
-          
-           const datos={{resultados|safe}};
-              
-               console.log(datos.length)
-               
-               const listas=[]
-               const longitud=datos[0].length
-   
-               for (let i = 0; i < longitud; i++) {
-                   const tupla=[]
-                   for (const element of datos ) {
-                       tupla.push(element[i])
-                   }
-                  listas.push(tupla)
-               }
-               console.log(listas)
-               const labels={{columnas|safe}};
-               const valor_prueba=[[123,121,212],[232,434,544]]
-               
-               
-               const chart = new Chart(grafico, {
-                   type: 'bar',
-                   data: {
-                       labels:{{columnas|safe}},
-                       datasets: listas.map((lista) =>{
-                           const lista_numeros = lista.map(elemento => {
-                           const numeros = elemento.match(/\d+/g);
-                           return numeros
-                           });
-                           const numeros_filtrados= lista_numeros.filter((elemento)=> elemento!==null)
-                           console.log(numeros_filtrados)
-   
-                           datasets= {
-                               label: 'tamaño',
-                               data: numeros_filtrados,
-                               borderColor: 'rgba(255, 99, 132, 1)',
-                               backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                               fill: true,
-                               borderWidth: 1
-                           }
-                           return datasets
-                       })
-                       
-                       
-                       
-                   },
-                   options: {
-                       responsive: true,
-                       scales: {
-                           x: {
-                               title: {
-                                   display: true,
-                                   text: 'datos'
-                               }
-                           },
-                           y: {
-                               title: {
-                                   display: true,
-                                   text: 'Valor'
-                               },
-                               beginAtZero: false
-                           }
-                       }
-                   }
-               });
-           }*/ 
-       </script>
     </section>
 {%endblock%}

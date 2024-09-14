@@ -43,11 +43,10 @@ def evaluar_consultas(request, consulta):
         "monitorear-conexiones": "SELECT pid, usename, client_addr, query FROM pg_stat_activity;",
         "tamanio-bbdd": "SELECT datname AS database_name, pg_size_pretty(pg_database_size(datname)) AS size FROM pg_database;", #USARA GRAFICOS
         "tamanio-tablas": "SELECT pg_size_pretty(pg_total_relation_size('conejos')) AS total_size",
-        "tamanio-tablas-esquema": "SELECT table_name, pg_size_pretty(pg_total_relation_size(quote_ident(table_schema) || '.' || quote_ident(table_name))) AS size FROM information_schema.tables WHERE table_schema = 'public';",
+        "tamanio-tablas-esquema": "SELECT table_name, pg_size_pretty(pg_total_relation_size(quote_ident(table_schema) || '.' || quote_ident(table_name))) AS size FROM information_schema.tables WHERE table_schema = 'public';", #USARA GRAFICOS
         "listado-tamanios": "SELECT current_database() AS database_name, schemaname AS schema_name, tablename AS table_name, pg_size_pretty(pg_total_relation_size(schemaname || '.' || tablename)) AS total_size, pg_size_pretty(pg_relation_size(schemaname || '.' || tablename)) AS table_size, pg_size_pretty(pg_indexes_size(schemaname || '.' || tablename)) AS index_size FROM pg_tables;"
     }
     
-
     #funcion para obtener la consulta me devuelve una lista de duplas con los resultados
     def obtener_consulta(consulta):
         with connection.cursor() as cursor:
@@ -58,19 +57,22 @@ def evaluar_consultas(request, consulta):
     
     resultado, nombre_columnas = obtener_consulta(consulta) 
     lista_resultado = [list(tupla) for tupla in resultado]
-    consultaHecha = consultas[consulta] #Esto para mostrar la consulta hecha en el template
+    laConsulta = consultas[consulta]
 
-    #DESVIO PARA USAR GRAFICOS O NO
-    
+    #DESVIO PARA USAR GRAFICOS O NO (Solo estas dos consultas usaran graficos!)
+    if consulta == 'tamanio-bbdd' or consulta == 'tamanio-tablas-esquema':
+        # Crear las etiquetas y los datos para el gráfico basados en la consulta
+        labels = [fila[0] for fila in resultado]  # Usamos la primera columna para los labels
+        data = [int(fila[1].replace('MB','').replace('kB','').replace('bytes','').strip()) for fila in resultado]  # Extraemos los datos como enteros, eliminando las unidades
+        return render(request, 'graficos.html', {
+            'consulta': laConsulta, 
+            'resultados': lista_resultado, 
+            'columnas': nombre_columnas,
+            'labels': labels,  # Enviamos las etiquetas al template
+            'data': data       # Enviamos los datos al template
+        })
 
-    return render(request,'resultado.html',{'consulta':consultaHecha,'resultados':lista_resultado,'columnas':nombre_columnas})
-
-    #USAR CUANDO ESTEN LOS GRAFICOS
-    #resultado,nombre_columnas=obtener_consulta(consulta) 
-    #lista_resultado=[list(tupla) for tupla in resultado]
-    #hay_grafico='no' if grafico==0 else 'si' 
-    #print(lista_resultado)
-    #return render(request,'resultado.html',{'resultados':lista_resultado,'columnas':nombre_columnas,'grafico':grafico})
+    return render(request,'resultado.html',{'consulta':laConsulta,'resultados':lista_resultado,'columnas':nombre_columnas})
 
 def pagina_form(request):
     return render(request,'buscar_tabla.html')
@@ -84,17 +86,12 @@ def buscar_tabla(request):
             resultado = cursor.fetchall()
             nombre_columnas = [desc[0] for desc in cursor.description]
         
-        
-        
         lista_resultado = [list(tupla) for tupla in resultado]
         print(lista_resultado)
         consultaHecha = consulta #Esto para mostrar la consulta hecha en el template
 
-        #DESVIO PARA USAR GRAFICOS O NO
-        if consulta == "tamanio-bbdd":
-            return render(request,'graficos.html',{'consulta':consultaHecha,'resultados':lista_resultado,'columnas':nombre_columnas})
-
         return render(request,'resultado.html',{'consulta':consultaHecha,'resultados':lista_resultado,'columnas':nombre_columnas})
+    
     except Exception:
         return render(request,'mensaje_error.html')    
     
