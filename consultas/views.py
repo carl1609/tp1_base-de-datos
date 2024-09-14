@@ -77,23 +77,25 @@ def pagina_form(request):
     return render(request,'buscar_tabla.html')
 
 def buscar_tabla(request):
-    nombre=request.POST.get('tabla')
-    consulta= "SELECT pg_size_pretty(pg_total_relation_size('"+ nombre +"')) AS total_size"
-    with connection.cursor() as cursor:
-        cursor.execute(consulta,nombre)
-        resultado = cursor.fetchall()
-        nombre_columnas = [desc[0] for desc in cursor.description]
-     
-    
-    
-    lista_resultado = [list(tupla) for tupla in resultado]
-    print(lista_resultado)
-    consultaHecha = consulta #Esto para mostrar la consulta hecha en el template
+    try:
+        nombre=request.POST.get('tabla')
+        consulta= "SELECT pg_size_pretty(pg_total_relation_size('"+ nombre +"')) AS total_size"
+        with connection.cursor() as cursor:
+            cursor.execute(consulta,nombre)
+            resultado = cursor.fetchall()
+            nombre_columnas = [desc[0] for desc in cursor.description]
+        
+        
+        
+        lista_resultado = [list(tupla) for tupla in resultado]
+        print(lista_resultado)
+        consultaHecha = consulta #Esto para mostrar la consulta hecha en el template
 
-    #DESVIO PARA USAR GRAFICOS O NO
-    if consulta == "tamanio-bbdd":
-        return render(request,'graficos.html',{'consulta':consultaHecha,'resultados':lista_resultado,'columnas':nombre_columnas})
+        #DESVIO PARA USAR GRAFICOS O NO
+        if consulta == "tamanio-bbdd":
+            return render(request,'graficos.html',{'consulta':consultaHecha,'resultados':lista_resultado,'columnas':nombre_columnas})
 
-    return render(request,'resultado.html',{'consulta':consultaHecha,'resultados':lista_resultado,'columnas':nombre_columnas})
-       
- 
+        return render(request,'resultado.html',{'consulta':consultaHecha,'resultados':lista_resultado,'columnas':nombre_columnas})
+    except Exception:
+        return render(request,'mensaje_error.html')    
+    
