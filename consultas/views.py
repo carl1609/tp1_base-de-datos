@@ -61,8 +61,7 @@ def evaluar_consultas(request, consulta):
     consultaHecha = consultas[consulta] #Esto para mostrar la consulta hecha en el template
 
     #DESVIO PARA USAR GRAFICOS O NO
-    if consulta == "tamanio-bbdd":
-        return render(request,'graficos.html',{'consulta':consultaHecha,'resultados':lista_resultado,'columnas':nombre_columnas})
+    
 
     return render(request,'resultado.html',{'consulta':consultaHecha,'resultados':lista_resultado,'columnas':nombre_columnas})
 
