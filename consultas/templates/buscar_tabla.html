@@ -1,0 +1,17 @@
+{%extends "base.html"%}
+{%block content%}
+    <span class="subtitulo">Consulta SQL realizada:</span>
+    <div class="marcoConsultaSql">
+        <span id="consulta"></span>
+    </div>
+    <span class="subtitulo">Buscar Tabla:</span>
+    <section class="resultado">
+        <form action="http://localhost:8000/buscar_tabla" method="post">
+            
+            {% csrf_token %}
+
+            <input type="text" id="tabla" name="tabla">
+            <input type="submit" value="buscar">
+        </form>    
+    </section>
+{%endblock%}
